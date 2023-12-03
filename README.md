@@ -1,5 +1,5 @@
 # Bibernate Usage Example
-This is an example of working bibernate appliction.
+This is an example of working Bibernate appliction.
 
 ## Getting Started
 
