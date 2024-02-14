@@ -28,6 +28,8 @@ public class Main {
 
       // Delete
       session.delete(foundPerson);
+
+      printPersons(session);
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
