@@ -7,19 +7,12 @@ import com.breskul.bibernate.annotation.Id;
 import com.breskul.bibernate.annotation.JoinColumn;
 import com.breskul.bibernate.annotation.ManyToOne;
 import com.breskul.bibernate.annotation.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-
+@Data
 @DynamicUpdate
-@Getter
-@Setter
-@ToString
 @Entity
 @Table(name = "photo_comment")
-@NoArgsConstructor
 public class PhotoComment {
 
   @Id

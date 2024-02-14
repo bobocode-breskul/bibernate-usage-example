@@ -5,8 +5,9 @@ import com.breskul.bibernate.annotation.Id;
 import com.breskul.bibernate.annotation.ManyToOne;
 import com.breskul.bibernate.annotation.Table;
 import com.breskul.bibernate.demo.entity.Person;
+import lombok.Data;
 
-
+@Data
 @Entity
 @Table(name = "notes")
 public class Notes {

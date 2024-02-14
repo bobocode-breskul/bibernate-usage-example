@@ -15,7 +15,7 @@ public class Main {
       printPersons(session);
 
       // Create
-      Person person = new Person("Taras", "TEST", 20);
+      Person person = new Person("Ivan", "Franko", 59);
       session.persist(person);
       System.out.println("A new person has been created: " + person);
 
