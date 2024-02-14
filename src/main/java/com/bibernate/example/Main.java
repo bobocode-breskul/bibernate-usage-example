@@ -17,17 +17,19 @@ public class Main {
       // Create
       Person person = new Person("Taras", "TEST", 20);
       session.persist(person);
+      System.out.println("A new person has been created: " + person);
 
       // Find
       Person foundPerson = session.findById(Person.class, person.getId());
-      System.out.println(foundPerson);
+      System.out.println("The user has been found by ID: " + foundPerson);
 
       // Update
       foundPerson.setAge(40);
-      System.out.println(foundPerson);
+      System.out.println("The user has been updated: " + foundPerson);
 
       // Delete
       session.delete(foundPerson);
+      System.out.println("The user has been deleted: " + foundPerson);
 
       printPersons(session);
     } catch (Exception e) {
@@ -38,12 +40,15 @@ public class Main {
   private static void printPersons(Session session) {
     String query = "SELECT * FROM persons";
     List<Person> personList = session.executeNativeQuery(query, Person.class);
-    System.out.println("All persons");
-    System.out.println("-----------------------------------------------------------");
-    for (Person person : personList) {
-      System.out.println(person);
+    if (personList.isEmpty()) {
+      System.out.println("\nThere is no persons yet...\n");
+    } else {
+      System.out.println("\nAll persons:");
+      System.out.println("-----------------------------------------------------------");
+      for (Person person : personList) {
+        System.out.println(person);
+      }
+      System.out.println("-----------------------------------------------------------\n");
     }
-    System.out.println("-----------------------------------------------------------");
-    System.out.println();
   }
 }
