@@ -12,6 +12,8 @@ target/
 *.iml
 *.ipr
 
+/db
+
 /.idea
 
 ### Eclipse ###
