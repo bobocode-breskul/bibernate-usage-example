@@ -1,6 +1,6 @@
 package com.bibernate.example;
 
-import com.breskul.bibernate.demo.entity.Person;
+import com.bibernate.example.entity.Person;
 import com.breskul.bibernate.persistence.Persistence;
 import com.breskul.bibernate.persistence.Session;
 import com.breskul.bibernate.persistence.SessionFactory;
@@ -25,11 +25,11 @@ public class Main {
 
       // Update
       foundPerson.setAge(40);
-      System.out.println("The user has been updated: " + foundPerson);
+      System.out.println("The user has been updated:     " + foundPerson);
 
       // Delete
       session.delete(foundPerson);
-      System.out.println("The user has been deleted: " + foundPerson);
+      System.out.println("The user has been deleted:     " + foundPerson);
 
       printPersons(session);
     } catch (Exception e) {
