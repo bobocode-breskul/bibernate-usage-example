@@ -1,5 +1,7 @@
 package com.bibernate.example;
 
+import static com.bibernate.example.util.PersonUtil.printPersonList;
+
 import com.bibernate.example.entity.Person;
 import com.breskul.bibernate.persistence.Persistence;
 import com.breskul.bibernate.persistence.Session;
@@ -44,15 +46,6 @@ public class Main {
   private static void printPersons(Session session) {
     String query = "SELECT * FROM persons";
     List<Person> personList = session.executeNativeQuery(query, Person.class);
-    if (personList.isEmpty()) {
-      System.out.println("\nThere is no persons yet...\n");
-    } else {
-      System.out.println("\nAll persons:");
-      System.out.println("--------------------------------------------------------------");
-      for (Person person : personList) {
-        System.out.println(person);
-      }
-      System.out.println("--------------------------------------------------------------\n");
-    }
+    printPersonList(personList);
   }
 }
