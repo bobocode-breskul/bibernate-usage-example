@@ -11,10 +11,11 @@ import com.breskul.bibernate.persistence.SessionFactory;
 import java.util.List;
 
 /**
- * The {@code Main} class demonstrates the basic usage of a Bibernate ORM framework.
- * It includes operations such as creating, reading, updating, and deleting (CRUD) Person entities.
+ * The {@code Main} class demonstrates the basic usage of a Bibernate ORM framework. It includes
+ * operations such as creating, reading, updating, and deleting (CRUD) Person entities.
  * <p>
- * To turn off SQL messaging, change the {@code bibernate.show_sql} property to {@code false} in the application.properties file.
+ * To turn off SQL messaging, change the {@code bibernate.show_sql} property to {@code false} in the
+ * application.properties file.
  * </p>
  */
 public class Main {
@@ -30,6 +31,12 @@ public class Main {
     }
   }
 
+  /**
+   * Performs database operations such as creating, finding, updating, and deleting Person entities.
+   * It also demonstrates the addition of Notes to a Person.
+   *
+   * @param session the current session to perform operations within a transaction
+   */
   private static void performDatabaseOperations(Session session) {
     createPersons(session);
     printPersons(session);
@@ -45,6 +52,11 @@ public class Main {
     printPersons(session);
   }
 
+  /**
+   * Creates two new Person entities and persists them in the database.
+   *
+   * @param session the current session to persist new Person entities
+   */
   private static void createPersons(Session session) {
     Person person = new Person("Ivan", "Franko", 59);
     Person person2 = new Person("Taras", "Shevchenko", 47);
@@ -54,23 +66,49 @@ public class Main {
     System.out.println("A new person has been created: " + person2);
   }
 
+  /**
+   * Finds a Person entity by its ID.
+   *
+   * @param session the current session to perform the search
+   * @param id      the unique identifier of the Person to find
+   * @return the found Person entity, or null if not found
+   */
   private static Person findPersonById(Session session, long id) {
     Person foundPerson = session.findById(Person.class, id);
     System.out.println("The user has been found by ID: " + foundPerson);
     return foundPerson;
   }
 
+  /**
+   * Updates the age of a Person entity.
+   *
+   * @param session the current session to perform the update
+   * @param person  the Person entity to update
+   * @param newAge  the new age value for the Person
+   */
   private static void updatePersonAge(Session session, Person person, int newAge) {
     person.setAge(newAge);
     System.out.println("The user has been updated:     " + person);
   }
 
+  /**
+   * Deletes a Person entity from the database.
+   *
+   * @param session the current session to perform the deletion
+   * @param person  the Person entity to delete
+   */
   private static void deletePerson(Session session, Person person) {
     session.delete(person);
     session.flush();
     System.out.println("The user has been deleted:     " + person);
   }
 
+  /**
+   * Adds Note entities to a Person.
+   *
+   * @param session the current session to persist new Note entities
+   * @param person  the Person entity to which Notes are added
+   */
   private static void addNotes(Session session, Person person) {
     Note note1 = new Note("First note", person);
     Note note2 = new Note("Second note", person);
@@ -80,9 +118,15 @@ public class Main {
     System.out.println("Note has been added: " + note2);
   }
 
+  /**
+   * Prints the list of all Person entities present in the database. This method demonstrates the
+   * execution of a BiQL query to fetch and print Person entities.
+   *
+   * @param session the current session used to execute the query
+   */
   private static void printPersons(Session session) {
-    String query = "SELECT * FROM persons";
-    List<Person> personList = session.executeNativeQuery(query, Person.class);
+    String query = "from Person";
+    List<Person> personList = session.executeBiQLQuery(query, Person.class);
     printPersonList(personList);
   }
 }
