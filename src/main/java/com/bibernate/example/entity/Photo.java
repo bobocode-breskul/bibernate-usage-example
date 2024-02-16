@@ -34,14 +34,14 @@ public class Photo {
   @ToString.Exclude
   @Setter(AccessLevel.PRIVATE)
   @OneToMany
-  private List<PhotoComment> comments = new ArrayList<>();
+  private List<Comment> comments = new ArrayList<>();
 
-  public void addComment(PhotoComment comment) {
+  public void addComment(Comment comment) {
     this.comments.add(comment);
     comment.setPhoto(this);
   }
 
-  public void removeComment(PhotoComment comment) {
+  public void removeComment(Comment comment) {
     this.comments.remove(comment);
     comment.setPhoto(null);
   }
