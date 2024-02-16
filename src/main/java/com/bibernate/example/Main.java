@@ -8,6 +8,7 @@ import com.bibernate.example.exception.SessionOpenException;
 import com.breskul.bibernate.persistence.Persistence;
 import com.breskul.bibernate.persistence.Session;
 import com.breskul.bibernate.persistence.SessionFactory;
+import com.breskul.bibernate.transaction.Transaction;
 import java.util.List;
 
 /**
@@ -49,6 +50,8 @@ public class Main {
     Person secondPerson = findPersonById(session, 2);
     addNotes(session, secondPerson);
 
+    addPersonsByTransaction(session);
+
     printPersons(session);
   }
 
@@ -60,8 +63,10 @@ public class Main {
   private static void createPersons(Session session) {
     Person person = new Person("Ivan", "Franko", 59);
     Person person2 = new Person("Taras", "Shevchenko", 47);
+
     session.persist(person);
     session.persist(person2);
+
     System.out.println("A new person has been created: " + person);
     System.out.println("A new person has been created: " + person2);
   }
@@ -110,12 +115,39 @@ public class Main {
    * @param person  the Person entity to which Notes are added
    */
   private static void addNotes(Session session, Person person) {
-    Note note1 = new Note("First note", person);
-    Note note2 = new Note("Second note", person);
+    Note note1 = new Note("Svitaye, kray neba palaye", person);
+    Note note2 = new Note("Meni trynadtsyatyy mynalo", person);
+
     session.persist(note1);
     session.persist(note2);
+
     System.out.println("Note has been added: " + note1);
     System.out.println("Note has been added: " + note2);
+  }
+
+  /**
+   * Adds two predefined {@link Person} entities to the database within a single transaction. This
+   * method begins a transaction, persists two new Person instances, and commits the transaction. In
+   * case of an exception, the transaction is rolled back to ensure data consistency.
+   *
+   * @param session The Hibernate {@link Session} instance used for database operations. This
+   *                session should be active and open before calling this method.
+   */
+  private static void addPersonsByTransaction(Session session) {
+    Transaction transaction = session.getTransaction();
+    try {
+      transaction.begin();
+
+      Person thirdPerson = new Person("Ivan", "Kotliarevsky", 69);
+      Person fourthPerson = new Person("Larysa", "Kosach", 42);
+
+      session.persist(thirdPerson);
+      session.persist(fourthPerson);
+
+      transaction.commit();
+    } catch (Exception e) {
+      transaction.rollback();
+    }
   }
 
   /**
