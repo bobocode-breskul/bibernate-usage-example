@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class Person {
 
   @Id
+  @Column(columnDefinition = "BIGSERIAL")
   private Long id;
 
   @Column(name = "first_name")

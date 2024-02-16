@@ -22,6 +22,7 @@ import lombok.ToString;
 public class Photo {
 
   @Id
+  @Column(columnDefinition = "BIGSERIAL")
   private Long id;
 
   @Column(name = "url")

@@ -16,6 +16,7 @@ import lombok.Data;
 public class PhotoComment {
 
   @Id
+  @Column(columnDefinition = "BIGSERIAL")
   private Long id;
 
   @Column(name = "text")

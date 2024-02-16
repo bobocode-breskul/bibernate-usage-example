@@ -1,5 +1,6 @@
 package com.bibernate.example.entity;
 
+import com.breskul.bibernate.annotation.Column;
 import com.breskul.bibernate.annotation.Entity;
 import com.breskul.bibernate.annotation.Id;
 import com.breskul.bibernate.annotation.ManyToOne;
@@ -12,6 +13,7 @@ import lombok.Data;
 public class Notes {
 
   @Id
+  @Column(columnDefinition = "BIGSERIAL")
   private Long id;
 
   private String note;
