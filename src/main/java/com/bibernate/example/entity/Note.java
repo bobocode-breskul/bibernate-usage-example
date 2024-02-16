@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "notes")
-public class Notes {
+public class Note {
 
   @Id
   @Column(columnDefinition = "BIGSERIAL")
@@ -20,4 +20,9 @@ public class Notes {
 
   @ManyToOne
   private Person persons;
+
+  public Note(String note, Person persons) {
+    this.note = note;
+    this.persons = persons;
+  }
 }

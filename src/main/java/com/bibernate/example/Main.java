@@ -11,7 +11,6 @@ public class Main {
   public static void main(String[] args) {
     SessionFactory sessionFactory = Persistence.createSessionFactory();
     try (Session session = sessionFactory.openSession()) {
-
       printPersons(session);
 
       // Create
@@ -21,7 +20,6 @@ public class Main {
       session.persist(person2);
       System.out.println("A new person has been created: " + person);
       System.out.println("A new person has been created: " + person2);
-
       printPersons(session);
 
       // Find

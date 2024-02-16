@@ -31,7 +31,6 @@ public class Photo {
   @Column(name = "description")
   private String description;
 
-
   @ToString.Exclude
   @Setter(AccessLevel.PRIVATE)
   @OneToMany
