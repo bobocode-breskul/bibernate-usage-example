@@ -12,8 +12,8 @@ import lombok.Data;
 @Data
 @DynamicUpdate
 @Entity
-@Table(name = "photo_comment")
-public class PhotoComment {
+@Table(name = "comments")
+public class Comment {
 
   @Id
   @Column(columnDefinition = "BIGSERIAL")

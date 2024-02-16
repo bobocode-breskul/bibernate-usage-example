@@ -9,6 +9,13 @@ import com.breskul.bibernate.persistence.Session;
 import com.breskul.bibernate.persistence.SessionFactory;
 import java.util.List;
 
+/**
+ * The {@code Main} class demonstrates the basic usage of a session in a Hibernate-like ORM framework.
+ * It includes operations such as creating, reading, updating, and deleting (CRUD) Person entities.
+ * <p>
+ * To turn off SQL messaging, change the {@code bibernate.show_sql} property to {@code false} in the application.properties file.
+ * </p>
+ */
 public class Main {
 
   private static final SessionFactory sessionFactory = Persistence.createSessionFactory();
