@@ -12,7 +12,7 @@
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <bibernate.version>1.3</bibernate.version>
+    <bibernate.version>1.4</bibernate.version>
     <lombok.version>1.18.30</lombok.version>
     <h2.version>2.2.224</h2.version>
   </properties>

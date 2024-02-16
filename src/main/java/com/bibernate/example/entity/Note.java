@@ -6,10 +6,13 @@ import com.breskul.bibernate.annotation.Id;
 import com.breskul.bibernate.annotation.ManyToOne;
 import com.breskul.bibernate.annotation.Table;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @Entity
 @Table(name = "notes")
+@NoArgsConstructor
 public class Note {
 
   @Id
@@ -19,6 +22,7 @@ public class Note {
   private String note;
 
   @ManyToOne
+  @ToString.Exclude
   private Person persons;
 
   public Note(String note, Person persons) {

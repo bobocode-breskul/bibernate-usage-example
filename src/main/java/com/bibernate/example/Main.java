@@ -2,6 +2,7 @@ package com.bibernate.example;
 
 import static com.bibernate.example.util.PersonUtil.printPersonList;
 
+import com.bibernate.example.entity.Note;
 import com.bibernate.example.entity.Person;
 import com.bibernate.example.exception.SessionOpenException;
 import com.breskul.bibernate.persistence.Persistence;
@@ -36,6 +37,10 @@ public class Main {
     Person person = findPersonById(session, 1);
     updatePersonAge(session, person, 40);
     deletePerson(session, person);
+    printPersons(session);
+
+    Person secondPerson = findPersonById(session, 2);
+    addNotes(session, secondPerson);
 
     printPersons(session);
   }
@@ -64,6 +69,15 @@ public class Main {
     session.delete(person);
     session.flush();
     System.out.println("The user has been deleted:     " + person);
+  }
+
+  private static void addNotes(Session session, Person person) {
+    Note note1 = new Note("First note", person);
+    Note note2 = new Note("Second note", person);
+    session.persist(note1);
+    session.persist(note2);
+    System.out.println("Note has been added: " + note1);
+    System.out.println("Note has been added: " + note2);
   }
 
   private static void printPersons(Session session) {
