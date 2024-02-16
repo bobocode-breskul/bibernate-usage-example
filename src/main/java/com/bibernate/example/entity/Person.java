@@ -11,6 +11,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * Represents a Person entity with basic personal information and a list of notes associated with
+ * the person. This class is annotated for use with the Bibernate ORM framework, indicating it's a
+ * managed entity corresponding to the "persons" table in the database.
+ */
 @Data
 @NoArgsConstructor
 @Entity
@@ -19,6 +24,9 @@ import lombok.ToString;
 @ToString
 public class Person {
 
+  /**
+   * Unique identifier for the Person. It's automatically managed by the database (BIGSERIAL).
+   */
   @Id
   @Column(columnDefinition = "BIGSERIAL")
   private Long id;
@@ -32,6 +40,10 @@ public class Person {
   @Column(name = "age")
   private Integer age;
 
+  /**
+   * List of Note entities associated with this person. It represents a one-to-many relationship
+   * between Person and Note entities.
+   */
   @OneToMany
   private List<Note> noteList;
 
