@@ -16,8 +16,13 @@ public class Main {
 
       // Create
       Person person = new Person("Ivan", "Franko", 59);
+      Person person2 = new Person("Taras", "Shevchenko", 47);
       session.persist(person);
+      session.persist(person2);
       System.out.println("A new person has been created: " + person);
+      System.out.println("A new person has been created: " + person2);
+
+      printPersons(session);
 
       // Find
       Person foundPerson = session.findById(Person.class, person.getId());
@@ -29,6 +34,7 @@ public class Main {
 
       // Delete
       session.delete(foundPerson);
+      session.flush();
       System.out.println("The user has been deleted:     " + foundPerson);
 
       printPersons(session);
